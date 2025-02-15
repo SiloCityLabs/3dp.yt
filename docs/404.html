@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        (function() {
+            const pathSegments = window.location.pathname.split('/').filter(Boolean);
+            if (pathSegments.length >= 2) {
+                const id = encodeURIComponent(pathSegments[0]);
+                const used = encodeURIComponent(pathSegments[1]);
+                const targetUrl = `https://filameter.com/ssi?id=${id}&used=${used}`;
+                window.location.replace(targetUrl);
+            } else {
+                document.body.innerHTML = "<h1>Invalid URL Format</h1>";
+            }
+        })();
+    </script>
+</head>
+<body>
+    <p>If you are not redirected automatically, <a id="redirect-link" href="#">click here</a>.</p>
+    <script>
+        document.getElementById("redirect-link").href = window.location.href;
+    </script>
+</body>
+</html>
