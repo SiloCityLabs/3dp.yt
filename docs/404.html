@@ -8,12 +8,16 @@
         (function() {
             const pathSegments = window.location.pathname.split('/').filter(Boolean);
             if (pathSegments.length >= 2) {
-                if (pathSegments[0] !== "s") {//SpoolSense
+                if (pathSegments[0] !== "s") {//SpoolSense Display QR
                     const id = encodeURIComponent(pathSegments[1]);
                     const used = encodeURIComponent(pathSegments[2]);
                     const targetUrl = `https://filameter.com/ssi?id=${id}&used=${used}`;
                     window.location.replace(targetUrl);
                 }else if (pathSegments[0] === "fq") {//Filameter QR Labels
+                    const id = encodeURIComponent(pathSegments[1]);
+                    const targetUrl = `https://filameter.com/s?id=${id}`;
+                    window.location.replace(targetUrl);
+                } if (pathSegments[0] === "custom") {//Custom QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
                     const targetUrl = `https://filameter.com/s?id=${id}`;
                     window.location.replace(targetUrl);
