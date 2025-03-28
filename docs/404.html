@@ -15,11 +15,11 @@
                     window.location.replace(targetUrl);
                 }else if (pathSegments[0] === "fq") {//Filameter QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
-                    const targetUrl = `https://filameter.com/s?id=${id}`;
+                    const targetUrl = `https://filameter.com/qr?id=${id}`;
                     window.location.replace(targetUrl);
                 } if (pathSegments[0] === "custom") {//Custom QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
-                    const targetUrl = `https://filameter.com/s?id=${id}`;
+                    const targetUrl = `https://filameter.com/custom?id=${id}`;
                     window.location.replace(targetUrl);
                 }else{
                     document.body.innerHTML = "<h1>Invalid URL Format</h1>";
