@@ -12,14 +12,17 @@
                     const id = encodeURIComponent(pathSegments[1]);
                     const used = encodeURIComponent(pathSegments[2]);
                     const targetUrl = `https://filameter.com/ssi?id=${id}&used=${used}`;
+                    document.getElementById("redirect-link").href = targetUrl;
                     window.location.replace(targetUrl);
                 }else if (pathSegments[0] === "fq") {//Filameter QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
                     const targetUrl = `https://filameter.com/qr?id=${id}`;
+                    document.getElementById("redirect-link").href = targetUrl;
                     window.location.replace(targetUrl);
                 }else if (pathSegments[0] === "custom") {//Custom QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
                     const targetUrl = `https://filameter.com/custom?id=${id}`;
+                    document.getElementById("redirect-link").href = targetUrl;
                     window.location.replace(targetUrl);
                 }else{
                     document.body.innerHTML = "<h1>Invalid URL Format</h1>";
@@ -32,8 +35,5 @@
 </head>
 <body>
     <p>If you are not redirected automatically, <a id="redirect-link" href="#">click here</a>.</p>
-    <script>
-        document.getElementById("redirect-link").href = window.location.href;
-    </script>
 </body>
 </html>
