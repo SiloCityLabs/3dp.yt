@@ -5,39 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        (function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const pathSegments = window.location.pathname.split('/').filter(Boolean);
+            console.log("Path Segments:", pathSegments); // Debugging line
+
             if (pathSegments.length >= 2) {
-                if (pathSegments[0] === "s") {//SpoolSense Display QR
-                    console.log("Section 1");
-                    console.log(pathSegments);
+                let targetUrl = "";
+                if (pathSegments[0] === "s") { // SpoolSense Display QR
                     const id = encodeURIComponent(pathSegments[1]);
                     const used = encodeURIComponent(pathSegments[2]);
-                    const targetUrl = `https://filameter.com/ssi?id=${id}&used=${used}`;
-                    document.getElementById("redirect-link").href = targetUrl;
-                    window.location.replace(targetUrl);
-                }else if (pathSegments[0] === "fq") {//Filameter QR Labels
-                    console.log("Section 1");
-                    console.log(pathSegments);
+                    targetUrl = `https://filameter.com/ssi?id=${id}&used=${used}`;
+                } else if (pathSegments[0] === "fq") { // Filameter QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
-                    const targetUrl = `https://filameter.com/qr?id=${id}`;
-                    document.getElementById("redirect-link").href = targetUrl;
-                    window.location.replace(targetUrl);
-                }else if (pathSegments[0] === "custom") {//Custom QR Labels
-                    console.log("Section 1");
-                    console.log(pathSegments);
+                    targetUrl = `https://filameter.com/qr?id=${id}`;
+                } else if (pathSegments[0] === "custom") { // Custom QR Labels
                     const id = encodeURIComponent(pathSegments[1]);
-                    const targetUrl = `https://filameter.com/custom?id=${id}`;
-                    document.getElementById("redirect-link").href = targetUrl;
-                    window.location.replace(targetUrl);
-                }else{
+                    targetUrl = `https://filameter.com/custom?id=${id}`;
+                } else {
                     document.body.innerHTML = "<h1>Invalid URL Format</h1>";
+                    return;
                 }
+    
+                const link = document.getElementById("redirect-link");
+                if (link) {
+                    link.href = targetUrl;
+                }
+                window.location.replace(targetUrl);
             } else {
                 document.body.innerHTML = "<h1>Invalid URL Format</h1>";
             }
-        })();
-    </script>
+        });
+    </script>    
 </head>
 <body>
     <p>If you are not redirected automatically, <a id="redirect-link" href="#">click here</a>.</p>
